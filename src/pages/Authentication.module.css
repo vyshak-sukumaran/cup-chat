@@ -1,0 +1,45 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 200px;
+}
+.googleLogin {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    background-color: white;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    margin: 0 auto;
+    border: 0 !important;
+    outline: 0 !important;
+    max-width: 400px;
+    width: 100%;
+    justify-content: center;
+}
+.googleLogin:hover {
+    cursor: pointer;
+}
+.googleLogin svg {
+    height: 30px;
+}
+.googleLogin p {
+    color: black;
+    font-size: 1.1rem;
+}
+.guestLogin {
+    background-color: var(--blue);
+    padding: 1rem 0;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+.guestLogin:hover {
+    cursor: pointer;
+}

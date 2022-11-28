@@ -1,0 +1,50 @@
+.wrapper {
+  height: calc(100vh - 90px);
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  padding-bottom: 1rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.body {
+  padding: 1rem 0;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+.body::-webkit-scrollbar {
+  width: 3px;
+}
+
+.body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px transparent;
+}
+
+.body::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid transparent;
+  border-radius: 10px;
+}
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 0 0.2rem;
+}
+.footer {
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+@media (min-width: 1024px) { 
+  .messages {
+    padding: 0 1rem;
+  }
+ }

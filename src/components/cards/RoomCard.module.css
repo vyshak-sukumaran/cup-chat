@@ -1,0 +1,52 @@
+.card {
+  padding: 1rem;
+  border-radius: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 200ms ease-out;
+  color: white;
+}
+.card:hover {
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.295);
+    transform: scale(1.01);
+}
+.cardHeader {
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+.cardBody {
+    height: 80px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.description {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+/* add spans with class "user" to have comma seperated words */
+.user:not(:empty) ~  .user:not(:empty)::before {
+    content: ", ";
+}
+
+.online {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.online span:nth-child(1) {
+    color: rgb(16, 255, 155);
+    font-size: 1.5rem;
+}

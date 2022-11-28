@@ -1,0 +1,17 @@
+.wrapper {
+   padding: 2rem;
+}
+.header {
+    font-size: 1.2rem;
+}
+.body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+@media (min-width:768px) {
+    .header {
+        font-size: 1.3rem;
+    }
+}
