@@ -20,7 +20,9 @@ import {
 } from "firebase/firestore";
 import { firestore } from "../services/firebase";
 import { useFirestoreQuery } from "@react-query-firebase/firestore";
+import { useAuthUser } from "@react-query-firebase/auth";
 import useAuth from "../hooks/useAuth";
+import { MessageSkeleton } from "../components/loading/Skelton";
 
 const Chat = () => {
   let [message, setMessage] = useState<string>("");
@@ -30,6 +32,7 @@ const Chat = () => {
   const bottomRef = useRef<HTMLDivElement>(null);
 
   const auth = useAuth();
+  const {data:uData} = useAuthUser(["user"], auth)
 
   const uid = auth.currentUser?.uid;
 
@@ -44,6 +47,7 @@ const Chat = () => {
       timestamp: Timestamp.now(),
       room: doc(firestore, `/rooms/${id}`),
       uid,
+      photoUrl: uData?.photoURL
     };
     try {
       const docRef = await addDoc(collection(firestore, "chats"), data);
@@ -69,7 +73,7 @@ const Chat = () => {
     data: snapShot,
     isLoading,
     isError,
-  } = useFirestoreQuery(["chats", {id}], q, {
+  } = useFirestoreQuery(["chats", { id }], q, {
     subscribe: true,
     includeMetadataChanges: true,
   });
@@ -79,7 +83,6 @@ const Chat = () => {
     bottomRef.current?.scrollIntoView();
   }, []);
 
-  if (isLoading) return <div>loading....</div>;
   if (isError) return <div>Error...</div>;
 
   return (
@@ -89,17 +92,26 @@ const Chat = () => {
       </header>
       <div className={s.body}>
         <div className={s.messages}>
-          {snapShot?.docs.map((doc) => {
-            const data = doc.data();
-            return (
-              <Message
-                key={doc.id}
-                message={data.message}
-                timestamp={data.timestamp}
-                sender={uid === data.uid ? true : false}
-              />
-            );
-          })}
+          {!isLoading ? (
+            snapShot?.docs.map((doc) => {
+              const data = doc.data();
+              return (
+                <Message
+                  key={doc.id}
+                  message={data.message}
+                  timestamp={data.timestamp}
+                  sender={uid === data.uid ? true : false}
+                  photoUrl={data?.photoUrl}
+                />
+              );
+            })
+          ) : (
+            <>
+              <MessageSkeleton />
+              <MessageSkeleton sender />
+            </>
+          )}
+
           <div ref={bottomRef}></div>
         </div>
       </div>

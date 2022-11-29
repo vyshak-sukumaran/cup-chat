@@ -17,13 +17,15 @@ import { ReactComponent as AddIcon } from "../assets/add.svg";
 import { getAuth, signOut } from "firebase/auth";
 import { firebaseApp } from "../services/firebase";
 import PublicRoute from "../utils/PublicRoute";
-import { useAuthState } from "react-firebase-hooks/auth";
 import BackButton from "../components/buttons/BackButton";
 import CreateRoom from "./CreateRoom";
+import { useAuthUser } from "@react-query-firebase/auth";
+import Spinner from "../components/loading/Spinner";
 
 const Root = () => {
   const auth = getAuth(firebaseApp);
-  const [user] = useAuthState(auth);
+  const { data, isLoading, isError } = useAuthUser(["user"], auth);
+
   const navigate = useNavigate();
   const signout = () => {
     signOut(auth);
@@ -32,13 +34,26 @@ const Root = () => {
   const location = useLocation();
 
   const addRoom = () => navigate("/createroom");
+
+  if (isLoading) {
+    return (
+      <div className={s.container}>
+        <div className={s.wrapper}>
+          <Spinner />
+        </div>
+      </div>
+    );
+  }
+
+  if (isError) return <div>Too lazy to do an error screen. ;)</div>;
+
   return (
     <div className={s.container}>
       <div className={s.wrapper}>
         <header className={s.header}>
           <span>Cup Chat</span>
 
-          {user && (
+          {data && (
             <>
               {location.pathname === "/home" ? (
                 <div className={s.newRoom}>

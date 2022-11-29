@@ -30,9 +30,9 @@ const Authentication = () => {
         <p>Continue with Google</p>
       </button>
       <div className={s.or}>Or</div>
-      <div className={s.guestLogin}>
+      <button onClick={() => alert("Comming soon!")} className={s.guestLogin}>
         <p>Be a guest</p>
-      </div>
+      </button>
     </div>
   );
 };

@@ -10,9 +10,7 @@ import { useAuthUser } from "@react-query-firebase/auth";
 
 const PublicRoute = () => {
   const auth = getAuth(firebaseApp);
-  const {data} = useAuthUser(["user"], auth)
-  console.log(data);
-  
+  const {data} = useAuthUser(["user"], auth)  
   
   return data ? <Navigate replace to="/home" /> : <Outlet />
 };

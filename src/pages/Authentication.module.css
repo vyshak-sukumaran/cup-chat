@@ -4,7 +4,8 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    margin-top: 200px;
+    margin-top: 100px;
+    padding: 1rem;
 }
 .googleLogin {
     display: flex;
@@ -12,7 +13,7 @@
     gap: 10px;
     width: fit-content;
     background-color: white;
-    padding: 1rem 2rem;
+    padding: 0.8rem 1.6rem;
     border-radius: 30px;
     margin: 0 auto;
     border: 0 !important;
@@ -32,6 +33,9 @@
     font-size: 1.1rem;
 }
 .guestLogin {
+    margin: 0 auto;
+    border: 0 !important;
+    outline: 0 !important;
     background-color: var(--blue);
     padding: 1rem 0;
     border-radius: 30px;
@@ -42,4 +46,10 @@
 }
 .guestLogin:hover {
     cursor: pointer;
+}
+
+@media (min-width:768px) {
+    .wrapper {
+        margin-top: 150px;
+    }
 }
