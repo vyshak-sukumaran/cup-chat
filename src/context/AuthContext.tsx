@@ -25,7 +25,6 @@ const AuthProvider = ({ children }: ProviderProps) => {
         setCurrentUser(null);
       }
     });
-    console.log(currentUser);
   }, [currentUser, auth]);
 
   const contextData : ContextProps = {
